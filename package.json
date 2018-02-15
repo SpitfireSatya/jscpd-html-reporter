@@ -1,6 +1,6 @@
 {
   "name": "jscpd-html-reporter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An npm module which uses jscpd and gib blame to generate a pretty html report for code duplicity",
   "main": "index.js",
   "scripts": {
