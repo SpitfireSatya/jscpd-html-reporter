@@ -49,6 +49,14 @@
       extendedConfig.output = path.join(basePath, extendedConfig.outDir, 'jscpd.json');
     }
 
+    console.info('Config used for generation of report: ');
+    console.info(funkyLogger.color('cyan', 'Files to include: '),
+      funkyLogger.color('magenta', path.join(basePath, extendedConfig.files)));
+    console.info(funkyLogger.color('cyan', 'Files to exclude: '),
+      funkyLogger.color('magenta', JSON.stringify(extendedConfig.exclude)));
+    console.info(funkyLogger.color('cyan', 'Output path for HTML report: '),
+      funkyLogger.color('magenta', path.join(basePath, extendedConfig.outDir, extendedConfig.outFileName)));
+
     recursiveMkDir(extendedConfig.outDir);
 
     return extendedConfig;

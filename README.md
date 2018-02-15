@@ -36,3 +36,8 @@ config: {
   blame: false // Set to true to add information of author with each duplicate line (for Git).
 }
 ```
+
+
+## Sample Report
+
+![This is what the report looks like](sample.jpg?raw=true "Sample Report")
