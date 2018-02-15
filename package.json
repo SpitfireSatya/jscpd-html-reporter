@@ -1,0 +1,31 @@
+{
+  "name": "jscpd-html-reporter",
+  "version": "1.0.0",
+  "description": "An npm module which uses jscpd and gib blame to generate a pretty html report for code duplicity",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SpitfireSatya/jscpd-html-reporter.git"
+  },
+  "keywords": [
+    "jscpd",
+    "html-reporter",
+    "html",
+    "reporter",
+    "git-blame"
+  ],
+  "author": "Spitfire",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SpitfireSatya/jscpd-html-reporter/issues"
+  },
+  "homepage": "https://github.com/SpitfireSatya/jscpd-html-reporter#readme",
+  "dependencies": {
+    "git-blame": "^1.4.0",
+    "handlebars": "^4.0.11",
+    "jscpd": "^0.6.17"
+  }
+}

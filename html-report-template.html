@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Code Duplicity Report</title>
+    <style>
+        
+        .badge-error {
+            background-color: tomato;
+        }
+        .error-div span {
+            padding: 10px;
+            min-height: 55px;
+        }
+    </style>
+</head>
+
+<body style="background-color:lightyellow">
+
+    <div class="container" >
+    
+        <h1 class="text-center">Code Duplicity Report</h1>
+
+        <div class="row error-div">
+            <h3 class="text-center col-lg-4">Total duplicates: {{statistics.clones}}</h3>
+            <h3 class="text-center col-lg-2">Files: {{statistics.files}}</h3>
+            <h3 class="text-center col-lg-6">Duplicity percentage: {{statistics.percentage}}% ({{statistics.duplications}}/{{statistics.lines}})</h3>
+        </div>
+
+        <hr>
+
+        {{#each clones as |clone|}}
+        <div>
+            <div class="row text-center error-div" style="background-color: lavender;">
+                <span class="col-lg-3" style="border-top:1px solid; border-left:1px solid">Duplicate {{clone.index}}</span>
+                <span class="col-lg-3" style="border-top:1px solid">Lines: {{clone.linesCount}}</span>
+                <span class="col-lg-3" style="border-top:1px solid">Tokens: {{clone.tokensCount}}</span>
+                <span class="col-lg-3" style="border-top:1px solid; border-right:1px solid"><button id="button{{clone.index}}" class="btn btn-success" onclick="expandTable({{clone.index}})">Show Details</button></span>
+            </div>
+            <div id="detail{{clone.index}}" class="col-lg-12" style="display: none; border: 1px solid">
+
+                <div class="text-center">
+                    <span class="col-lg-6" style="border: 1px solid; background-color: lightgreen"><b>File 1:</b> {{clone.firstFile}}</span>
+                    <span class="col-lg-6" style="border: 1px solid; background-color:lightcoral"><b>File 2:</b> {{clone.secondFile}}</span>
+                </div>
+                <table border="1" class="table text-center table-hover table-sm" style="background-color: lightgoldenrodyellow">
+                    <thead class="thead-inverse">
+                        <tr>
+                            <th class="text-center" style="width: 10%" >Line</th>
+                            <th class="text-center" style="width: 20%" >Author</th>
+                            <th class="text-center" style="width: 40%" >Fragment</th>
+                            <th class="text-center" style="width: 20%" >Author</th>
+                            <th class="text-center" style="width: 10%" >Line</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each clone.fragmentDetails as |details| }}
+                        <tr>
+                            <td style="background-color:lightgreen">{{details.file1Line}}</td>
+                            <td style="background-color:lightgreen">{{details.author1}}</td>
+                            <td style="background-color:lightgoldenrodyellow">{{details.fragment}}</td>
+                            <td style="background-color:lightcoral">{{details.author2}}</td>
+                            <td style="background-color:lightcoral">{{details.file2Line}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {{/each}}
+        <div style="position: fixed;right: 10px;bottom: 10px">
+            <button class="btn btn-primary" onclick="scrollToTop()">Scroll top</button>
+        </div>
+    </div>
+</body>
+
+<script>
+    function expandTable(id) {
+        let element = document.getElementById('detail'+id);
+        element.style.display = (element.style.display === 'none') ? 'block' : 'none';
+        document.getElementById('button'+id).textContent = (document.getElementById('button'+id).textContent === 'Show Details') ?
+            'Hide Details' : 'Show Details';
+    }
+
+    function scrollToTop() {
+        window.scrollTo(0, 0);
+    }
+
+</script>
+
+</html>
