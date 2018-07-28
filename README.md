@@ -15,7 +15,7 @@ Simple require the module in your script/gulp task and invoke it with the desire
 ```js
 const jscpdHtmlReporter = require('jscpd-html-reporter');
 
-jscpdHtmlReporter({/*config*/});
+jscpdHtmlReporter({/*config*/}, callback);
 
 ```
 

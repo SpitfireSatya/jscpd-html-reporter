@@ -8,17 +8,21 @@
   const funkyLogger = require('./funky-logger');
   const path = require('path');
 
-  function generateHtmlReport(data, config) {
+  function generateHtmlReport(data, config, done) {
 
     console.info(funkyLogger.color('cyan', 'Writing data...'));
 
-    const template = fs.readFileSync(__dirname + '/html-report-template.html', 'utf8');
-    const compiledTemplate = handlebars.compile(template, {});
-    const html = compiledTemplate(data);
+    fs.readFile(__dirname + '/html-report-template.html', 'utf8', (error, template) => {
 
-    fs.writeFileSync(path.join(config.path, config.outDir, config.outFileName), html, 'utf8');
+      const compiledTemplate = handlebars.compile(template, {});
+      const html = compiledTemplate(data);
 
-    console.info(funkyLogger.color('green', 'Data write complete.'));
+      fs.writeFile(path.join(config.path, config.outDir, config.outFileName), html, 'utf8', () => {
+        console.info(funkyLogger.color('green', 'Data write complete.'));
+        done();
+      });
+
+    });
 
   }
 
