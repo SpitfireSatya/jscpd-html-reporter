@@ -24,7 +24,6 @@
   },
   "homepage": "https://github.com/SpitfireSatya/jscpd-html-reporter#readme",
   "dependencies": {
-    "git-blame": "^1.4.0",
     "handlebars": "^4.0.11",
     "jscpd": "^0.6.17"
   }
